@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import './Header.css'
 import PropTypes from 'prop-types';
 import Button from './Button'
-// import {FontAwesome} from ''
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import fontawesome from "@fortawesome/fontawesome";
+import { faSearch} from '@fortawesome/free-solid-svg-icons'
+
+fontawesome.library.add(faSearch);
+
 export default class Header extends Component{
     constructor(...args){
         super(...args);
@@ -31,8 +36,7 @@ export default class Header extends Component{
                 <nav className ="dark-blue">
                     <div className="nav-wrapper">
                         <div className="header-search-wrapper">
-                            {/*<FontAwesome className="check-square"/>*/}
-                            <i className="fas fa-search">Search</i>
+                            {/*<FontAwesomeIcon icon="search"/>*/}
                             <form className='Searcher' onSubmit={this.onSubmit}>
                                 <input
                                     disabled={this.props.isLoading}
@@ -41,7 +45,7 @@ export default class Header extends Component{
                                     type='text'/>
                                 <Button
                                     isLoading={this.props.isLoading}
-                                    label='Search'
+                                    label={<FontAwesomeIcon icon="search"/>}
                                 />
 
                             </form>

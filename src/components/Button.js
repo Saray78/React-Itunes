@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Spinner from 'react-spinkit';
 export default function Button(props) {
@@ -12,6 +12,6 @@ export default function Button(props) {
 }
 
 Button.propTypes = {
-    label: PropTypes.string,
+    label: PropTypes.any,
     isLoading: PropTypes.bool
 };

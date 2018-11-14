@@ -1,10 +1,18 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+// import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header'
 import Card from './components/Card'
+// import Spinner from 'react-spinkit';
+// import FeedbackMessage from './components/FeedbackMessage'
+import {library} from '@fortawesome/fontawesome-svg-core'
+// import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faStroopwafel} from '@fortawesome/free-solid-svg-icons'
+import FeedbackMessage from "./components/FeedbackMessage";
+library.add(faStroopwafel);
 // library.add(faStroopwafel);
 // library.add(faEnvelope, faKey);
+
 
 const API_URL = 'https://itunes.apple.com';
 
@@ -12,18 +20,18 @@ export default class App extends Component {
     constructor(...args) {
         super(...args);
         this.state = {
-            initialState: true,
+            status: 'init',
             isLoading: false,
             results: [],
         };
         this.onClick = this.onClick.bind(this);
     }
 
-        onClick(term: string){
-            // console.log(term);
+    onClick(term: string) {
+        // console.log(term);
             this.setState({
-                initialState: false,
-                isLoading: true
+                isLoading: true,
+                status: 'loading'
             });
             const FETCH_URL = `${API_URL}/search?term=${term}&entity=album&limit=20`;
             fetch(FETCH_URL)
@@ -31,37 +39,39 @@ export default class App extends Component {
                 .then(res => {
 
                     this.setState({
+                        status: res.results.length === 0 ? 'no content' : '',
                         results: res.results,
                         isLoading: false,
                     });
                     console.log(this.state)
                 })
-                .catch(err => {
-                    this.setState({isLoading: false});
-                    console.log(err);
-                })
+                .catch (e => this.setState({status: 'error', isLoading: false}));
+    }
 
-        }
+    render() {
+        return (
+            <div>
+                <header className="text-center">
+                    <Header
+                        isLoading={this.state.isLoading}
+                        onSubmit={this.onClick}/>
+                </header>
+                <div className="container">
+                    {!this.state.isLoading
+                        ? this.state.results.map(item => {
+                        return (
+                            <Card key={item.trackId} item={item}/>
+                        )
+                    }) : <FeedbackMessage/>
+                    }
 
+                    {this.state.status === 'no content'?
+                        <div>No data matching</div> : null
+                    }
 
-  render() {
-    return (
-      <div>
-        <header className="text-center">
-         <Header
-             isLoading={this.state.isLoading}
-             onSubmit={this.onClick}/>
-        </header>
-          <div className="container">
-              {this.state.results.map(item => {
-                  return(
-                      <Card item={item}/>
-                  )
-              })}
-            {/*<Card item={this.state.results}/>*/}
-          </div>
-      </div>
-    );
-  }
+                </div>
+            </div>
+        );
+    }
 }
 

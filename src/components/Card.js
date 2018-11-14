@@ -6,14 +6,9 @@ import PropTypes from 'prop-types';
 import './Card.css'
 
 export default class Card extends Component{
-    constructor(...args){
-        super(...args);
-        // this.state = {
-        //     textToSearch: ''
-        // };
-        // this.onChange = this.onChange.bind(this);
-        // this.onSubmit = this.onSubmit.bind(this);
-    }
+    // constructor(...args){
+    //     super(...args);
+    // }
 
     render(){
         const item = this.props.item;
@@ -22,7 +17,7 @@ export default class Card extends Component{
               {/*<div className="grid">*/}
                   <div className="card">
                   <div className="card-header">
-                    <img className="image" alt="it" src={item.artworkUrl100.replace('100x100', '300x300')}/>
+                    <img key={item.trackId} className="image" alt="it" src={item.artworkUrl100.replace('100x100', '300x300')}/>
                     {/*<img alt="it" src={item.artworkUrl100}/>*/}
                   </div>
                   <div className="card-footer"></div>
@@ -34,5 +29,5 @@ export default class Card extends Component{
 
 }
 Card.propTypes = {
-    item: PropTypes.Array
+    item: PropTypes.object
 };
