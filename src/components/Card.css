@@ -3,19 +3,32 @@
     margin: 0;
     padding: 0;
     position: relative;
+    display: grid;
+    grid-gap: 20px;
+    align-items: stretch;
+}
+
+.card{
+    background-color: rgba(0,0,0,.03);
+}
+
+.card-footer{
+    background-color: unset;
 }
 
 .image{
     width:100%;
 }
 
-.grid{
-    /*flex-direction: column;*/
-    /*padding-bottom: 5020.45px;*/
-    /*padding-top: 0;*/
-    /*display: grid;*/
+.card-cover, .card-footer{
+    position: relative;
+    overflow: hidden;
 }
 
-.card-header{
+.card-title{
+    margin-bottom: 0.25em;
+}
 
+.artist{
+    font-size: 14pt;
 }

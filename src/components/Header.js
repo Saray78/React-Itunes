@@ -25,9 +25,14 @@ export default class Header extends Component{
     }
 
     onSubmit(e){
+        let term: string = this.state.textToSearch;
         console.log(e);
         e.preventDefault();
-        this.props.onSubmit(this.state.textToSearch);
+        if(term && term.includes(' ')){
+            term = term.split(' ').join('+');
+            console.log(term);
+        }
+        this.props.onSubmit(term);
     }
 
     render(){

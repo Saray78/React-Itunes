@@ -33,7 +33,7 @@ export default class App extends Component {
                 isLoading: true,
                 status: 'loading'
             });
-            const FETCH_URL = `${API_URL}/search?term=${term}&entity=album&limit=20`;
+            const FETCH_URL = `${API_URL}/search?term=${term}&media=music&entity=album&limit=20`;
             fetch(FETCH_URL)
                 .then(res => res.json())
                 .then(res => {
@@ -56,11 +56,14 @@ export default class App extends Component {
                         isLoading={this.state.isLoading}
                         onSubmit={this.onClick}/>
                 </header>
-                <div className="container">
+                <div className="container my-4">
                     {!this.state.isLoading
                         ? this.state.results.map(item => {
                         return (
-                            <Card key={item.trackId} item={item}/>
+                            <Card
+                                item={item}
+                                key={item.collectionId}
+                            />
                         )
                     }) : <FeedbackMessage/>
                     }
