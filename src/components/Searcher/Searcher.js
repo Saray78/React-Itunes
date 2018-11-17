@@ -66,12 +66,12 @@ export default class Searcher extends Component {
                                     />
                                     {/*Grid-Vertical*/}
                                     <div onClick={() => this.onChangeView(true)}
-                                         className={"cards-position grid " + (Searcher.addClassActive(this.props.isGrid))}
+                                         className={"cards-position " + (Searcher.addClassActive(this.props.isGrid))}
                                          alt="grid"
                                          title="Grid"><FontAwesomeIcon icon="th"/>
                                     </div>
                                     <div onClick={() => this.onChangeView(false)}
-                                         className={"cards-position grid " + (Searcher.addClassActive(!this.props.isGrid))}
+                                         className={"cards-position " + (Searcher.addClassActive(!this.props.isGrid))}
                                          alt="vertical"
                                          title="Vertical"><FontAwesomeIcon icon="th-list"/>
                                     </div>
