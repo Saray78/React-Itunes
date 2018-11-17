@@ -54,6 +54,7 @@ export default class App extends Component {
             <div>
                 <header className="text-center dark-blue">
                     <Header
+                        isGrid={this.state.isGrid}
                         isLoading={this.state.isLoading}
                         onChangeView={this.onChangeView}
                         onSubmit={this.onClick}/>

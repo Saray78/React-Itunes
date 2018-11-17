@@ -41,6 +41,8 @@ export default class Header extends Component{
         this.props.onChangeView(isGrid);
     }
 
+
+
     render(){
         return (
             <div className="container">
@@ -65,8 +67,8 @@ export default class Header extends Component{
                                     isLoading={this.props.isLoading}
                                     label={<FontAwesomeIcon icon="search"/>}
                                 />
-                                    <div onClick={() => this.onChangeView(true)} className="cards-position grid active" alt="grid"> <FontAwesomeIcon icon="th"/></div>
-                                    <div onClick={() => this.onChangeView(false)} className="cards-position vertical" alt="vertical"> <FontAwesomeIcon icon="th-list"/></div>
+                                    <div onClick={() => this.onChangeView(true)} className={"cards-position grid " + (this.props.isGrid ? 'active' : '')} alt="grid"> <FontAwesomeIcon icon="th"/></div>
+                                    <div onClick={() => this.onChangeView(false)} className={"cards-position grid " + (!this.props.isGrid ? 'active' : '')} alt="vertical"> <FontAwesomeIcon icon="th-list"/></div>
                                 </div>
 
                             </form>
@@ -81,6 +83,7 @@ export default class Header extends Component{
 
 Header.propTypes = {
     isLoading: PropTypes.bool,
+    isGrid: PropTypes.bool,
     onSubmit: PropTypes.func.isRequired,
     onChangeView: PropTypes.func
 };

@@ -38,3 +38,9 @@
 .cards-position.grid.active{
     color: white;
 }
+
+@media (max-width: 640px) {
+    .header-search-wrapper input{
+        width: 64%;
+    }
+}
