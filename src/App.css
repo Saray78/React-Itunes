@@ -11,6 +11,11 @@ html, body{
   grid-template-columns: auto auto auto;
 }
 
+.vertical-wrapper{
+  display: grid;
+  grid-template-columns: auto;
+}
+
 @media (max-width: 640px) {
   .wrapper{
     grid-template-columns: auto auto;

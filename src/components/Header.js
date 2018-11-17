@@ -4,18 +4,20 @@ import PropTypes from 'prop-types';
 import Button from './Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import fontawesome from "@fortawesome/fontawesome";
-import { faSearch} from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faTh, faThList} from '@fortawesome/free-solid-svg-icons'
 
-fontawesome.library.add(faSearch);
+fontawesome.library.add(faSearch, faTh, faThList);
 
 export default class Header extends Component{
     constructor(...args){
         super(...args);
         this.state = {
-            textToSearch: ''
+            textToSearch: '',
+            isGrid: true,
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onChangeView = this.onChangeView.bind(this);
     }
 
     onChange(e){
@@ -33,6 +35,10 @@ export default class Header extends Component{
             console.log(term);
         }
         this.props.onSubmit(term);
+    }
+
+    onChangeView(isGrid: boolean){
+        this.props.onChangeView(isGrid);
     }
 
     render(){
@@ -59,8 +65,12 @@ export default class Header extends Component{
                                     isLoading={this.props.isLoading}
                                     label={<FontAwesomeIcon icon="search"/>}
                                 />
+                                    <div onClick={() => this.onChangeView(true)} className="cards-position grid active" alt="grid"> <FontAwesomeIcon icon="th"/></div>
+                                    <div onClick={() => this.onChangeView(false)} className="cards-position vertical" alt="vertical"> <FontAwesomeIcon icon="th-list"/></div>
                                 </div>
+
                             </form>
+
                         </div>
                     </div>
                 </nav>
@@ -71,9 +81,11 @@ export default class Header extends Component{
 
 Header.propTypes = {
     isLoading: PropTypes.bool,
-    onSubmit: PropTypes.func.isRequired
+    onSubmit: PropTypes.func.isRequired,
+    onChangeView: PropTypes.func
 };
 
 Header.defaultProps = {
-    onSubmit: ()=> {}
+    onSubmit: ()=> {},
+    onChangeView: ()=> {}
 };

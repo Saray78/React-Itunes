@@ -15,9 +15,18 @@ export default class App extends Component {
         super(...args);
         this.state = {
             status: 'init',
+            isGrid: true,
+            isLoading: false,
             results: [],
         };
         this.onClick = this.onClick.bind(this);
+        this.onChangeView= this.onChangeView.bind(this);
+    }
+
+    onChangeView(isGrid: boolean){
+        this.setState({
+            isGrid: isGrid
+        })
     }
 
     onClick(term: string) {
@@ -46,9 +55,11 @@ export default class App extends Component {
                 <header className="text-center dark-blue">
                     <Header
                         isLoading={this.state.isLoading}
+                        onChangeView={this.onChangeView}
                         onSubmit={this.onClick}/>
                 </header>
-                <div className={"container my-4 " + (this.state.status === 'content' ? 'wrapper' : '')}>
+                <div className={"container my-4 " + (this.state.status === 'content' &&
+                    this.state.isGrid ? 'wrapper' : 'vertical-wrapper')}>
                     {this.state.status === 'content'
                         ? this.state.results.map(item => {
                             return (
