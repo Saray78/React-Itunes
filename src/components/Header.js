@@ -38,21 +38,24 @@ export default class Header extends Component{
     render(){
         return (
             <div className="navbar-fixed">
-                <nav className ="dark-blue">
+                <nav>
                     <div className="nav-wrapper">
                         <div className="header-search-wrapper">
-                            {/*<FontAwesomeIcon icon="search"/>*/}
                             <form className='Searcher' onSubmit={this.onSubmit}>
+                                <div className="form-group">
                                 <input
+                                    className="form-control"
                                     disabled={this.props.isLoading}
                                     onChange={this.onChange}
-                                    placeholder='Find a Character'
-                                    type='text'/>
+                                    placeholder='Search'
+                                    type='text'
+
+                                />
                                 <Button
                                     isLoading={this.props.isLoading}
                                     label={<FontAwesomeIcon icon="search"/>}
                                 />
-
+                                </div>
                             </form>
                         </div>
                     </div>

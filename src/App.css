@@ -1,14 +1,18 @@
+html, body{
+  overflow-x: hidden;
+}
+
 .App {
   text-align: center;
 }
 
-.container{
+.wrapper{
   display: grid;
   grid-template-columns: auto auto auto;
 }
 
 @media (max-width: 640px) {
-  .container{
+  .wrapper{
     grid-template-columns: auto auto;
   }
 }

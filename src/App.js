@@ -51,12 +51,12 @@ export default class App extends Component {
     render() {
         return (
             <div>
-                <header className="text-center">
+                <header className="text-center dark-blue">
                     <Header
                         isLoading={this.state.isLoading}
                         onSubmit={this.onClick}/>
                 </header>
-                <div className="container my-4">
+                <div className="container wrapper my-4">
                     {!this.state.isLoading
                         ? this.state.results.map(item => {
                         return (

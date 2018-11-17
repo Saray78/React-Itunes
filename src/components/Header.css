@@ -1,9 +1,10 @@
 .dark-blue{
-    background-color: #1F0072;
+    background-color: #005a67;
 }
 
 .nav-wrapper{
-    height: 90px;
+    height: 65px;
+    justify-content: center;
 }
 
 .header-search-wrapper{
@@ -12,4 +13,18 @@
 
 .card{
     margin-bottom: 28px;
+}
+
+.form-group{
+    /*width: 500px;*/
+}
+
+.header-search-wrapper input{
+    display: inline-block;
+    width: 31%;
+}
+
+.form-control:focus{
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+    border: none;
 }
