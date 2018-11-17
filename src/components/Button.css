@@ -10,7 +10,6 @@ button:focus{
 }
 
 .spinner{
-   background-color: transparent;
     position: relative;
-    top:2px;
+    top: 2px;
 }

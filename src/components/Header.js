@@ -37,21 +37,25 @@ export default class Header extends Component{
 
     render(){
         return (
-            <div className="navbar-fixed">
+            <div className="container">
                 <nav>
                     <div className="nav-wrapper">
                         <div className="header-search-wrapper">
                             <form className='Searcher' onSubmit={this.onSubmit}>
-                                <div className="form-group">
+                                <div className={"control-group " +
+                                (this.state.textToSearch === '' ? 'error' : '' )}>
                                 <input
-                                    className="form-control"
+                                    className={"form-control " +
+                                    (this.state.textToSearch === '' ? 'is-invalid' : '' )}
                                     disabled={this.props.isLoading}
                                     onChange={this.onChange}
                                     placeholder='Search'
                                     type='text'
+                                    required
 
                                 />
                                 <Button
+                                    term={this.state.textToSearch}
                                     isLoading={this.props.isLoading}
                                     label={<FontAwesomeIcon icon="search"/>}
                                 />

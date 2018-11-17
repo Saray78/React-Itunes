@@ -1,0 +1,10 @@
+.message{
+    font-size: 18pt;
+}
+
+.load{
+    display: inline-block;
+    position: relative;
+    top: 3px;
+    margin-right: 10px;
+}
