@@ -6,6 +6,10 @@ html, body{
   text-align: center;
 }
 
+.container{
+  padding-right: 0;
+}
+
 .wrapper{
   display: grid;
   grid-template-columns: auto auto auto;

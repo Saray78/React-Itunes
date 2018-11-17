@@ -1,15 +1,15 @@
-button{
+button {
     position: relative;
     left: -42px;
     background-color: transparent;
     border: none;
 }
 
-button:focus{
+button:focus {
     outline: 0;
 }
 
-.spinner{
+.spinner {
     position: relative;
     top: 2px;
 }

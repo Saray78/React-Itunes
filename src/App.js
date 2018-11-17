@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import "./App.css";
-import Header from "./components/Header";
-import Card from "./components/Card";
+import Searcher from "./components/Searcher/Searcher";
+import Card from "./components/Card/Card";
 import {library} from "@fortawesome/fontawesome-svg-core";
 import {faStroopwafel} from "@fortawesome/free-solid-svg-icons";
-import FeedbackMessage from "./components/FeedbackMessage";
+import FeedbackMessage from "./components/FeedbackMessage/FeedbackMessage";
 library.add(faStroopwafel);
 
 
@@ -19,32 +19,30 @@ export default class App extends Component {
             isLoading: false,
             results: [],
         };
-        this.onClick = this.onClick.bind(this);
-        this.onChangeView= this.onChangeView.bind(this);
+        this.searchAlbum = this.searchAlbum.bind(this);
+        this.changeView= this.changeView.bind(this);
     }
 
-    onChangeView(isGrid: boolean){
+    changeView(isGrid: boolean){
         this.setState({
             isGrid: isGrid
         })
     }
 
-    onClick(term: string) {
+    searchAlbum(term: string) {
         this.setState({
             isLoading: true,
             status: 'loading'
         });
-        const FETCH_URL = `${API_URL}/search?term=${term}&media=music&entity=album&limit=20`;
+        const FETCH_URL = `${API_URL}/search?term=${term}&entity=album&limit=20`;
         fetch(FETCH_URL)
             .then(res => res.json())
-            .then(res => {
-
+            .then(resp => {
                 this.setState({
-                    status: res.results.length === 0 ? 'no content' : 'content',
-                    results: res.results,
+                    status: resp.results.length === 0 ? 'no content' : 'content',
+                    results: resp.results,
                     isLoading: false,
                 });
-                console.log(this.state)
             })
             .catch(e => this.setState({status: 'error', isLoading: false}));
     }
@@ -53,11 +51,12 @@ export default class App extends Component {
         return (
             <div>
                 <header className="text-center dark-blue">
-                    <Header
+                    <Searcher
                         isGrid={this.state.isGrid}
                         isLoading={this.state.isLoading}
-                        onChangeView={this.onChangeView}
-                        onSubmit={this.onClick}/>
+                        onChangeView={this.changeView}
+                        onSubmit={this.searchAlbum}
+                    />
                 </header>
                 <div className={"container my-4 " + (this.state.status === 'content' &&
                     this.state.isGrid ? 'wrapper' : 'vertical-wrapper')}>

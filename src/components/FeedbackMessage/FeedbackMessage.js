@@ -1,14 +1,13 @@
 /**
- * Created by Blue Butterfly on 14/11/2018.
+ * Created by Saray Balbuena
  */
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Spinner from 'react-spinkit';
-
 import './FeedbackMessage.css'
 
-export default class FeedbackMessage extends Component{
-    constructor(...args){
+export default class FeedbackMessage extends Component {
+    constructor(...args) {
         super(...args);
         this.status =
             [
@@ -16,13 +15,11 @@ export default class FeedbackMessage extends Component{
                     status: 'init',
                     feedbackMessage: 'Search albums'
                 },
-
                 {
                     status: 'loading',
                     feedbackMessage: 'Loading...'
                 },
                 {
-
                     status: 'no content',
                     feedbackMessage: 'No matching data'
                 },
@@ -33,15 +30,24 @@ export default class FeedbackMessage extends Component{
             ]
     }
 
-    render(){
-        return(
+    getFeedbackMessage(st: string) {
+        let status = this.status.find(e => e.status === st);
+        if (status) return status.feedbackMessage;
+    }
+
+    static getSpinner(st: string) {
+        return st === 'loading' ? <Spinner className="load" name="circle" fadeIn='none' color="black"/> : null;
+    }
+
+    render() {
+        return (
             <div className="message text-center">
-                <span>{this.props.status === 'loading'? <Spinner className="load" name="circle" fadeIn='none' color="black" /> : null}{this.status ? this.status.find(e=> e.status === this.props.status) ? this.status.find(e=> e.status === this.props.status).feedbackMessage : null : null}</span>
+                <span>{FeedbackMessage.getSpinner(this.props.status)}{this.getFeedbackMessage(this.props.status)}</span>
             </div>
         );
     }
 
 }
 FeedbackMessage.propTypes = {
-    status: PropTypes.any
+    status: PropTypes.string
 };
